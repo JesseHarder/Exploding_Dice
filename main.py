@@ -12,6 +12,10 @@ from random import *
 
 DEFAULT_DIE_SIZE = 6
 DEFAULT_SUCCESS_THRESHOLD = 4
+NUM_TESTS = 50000
+
+
+""" Dice Functions """
 
 
 # Function: roll_exploding_die
@@ -60,7 +64,39 @@ def roll_exploding_dice(num_dice=1, num_sides=DEFAULT_DIE_SIZE, success_threshol
 
     return total_successess
 
+
+""" Distribution Functions """
+
+
+# Function: distribution_for_n_dice
+# Parameters:
+#   n - number of dice rolled for each tests. Expected to be an integer > 0.
+# Return Value: a list containing number of times N successes was rolled at index N of the list.
+def distribution_for_n_dice(n):
+    distribution = [0]
+
+    # Execute a large number of rolls and gather statistics for them.
+    for i in range(1, NUM_TESTS):
+        successes = roll_exploding_dice(n)
+
+        # Expand list if necessary.
+        if len(distribution) <= successes:
+            distribution.extend([0] * (successes - len(distribution) + 1))
+
+        distribution[successes] += 1
+
+    return distribution
+
+
+# Function print_distribution
+# Parameters:
+#   distribution - a distribution of the type returned by distribution_for_n_dice
+# Behavior: Prints the distribution given to it.
+def print_distribution(distribution):
+    for i in range(0,len(distribution)):
+        print('%s\t-\t%s' % (i, distribution[i]))
+
+
 if __name__ == "__main__":
-    print('Program running')
-    for i in range(1, 10):
-        print("Rolled %s successes" % roll_exploding_dice(3))
+    print('--- Program Running ---')
+    print_distribution(distribution_for_n_dice(4))
