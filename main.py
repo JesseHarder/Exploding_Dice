@@ -8,15 +8,14 @@ Burning Wheel test system.
 """
 
 import distributions
-import multithreading
 
 
-NUM_TESTS = 105
+NUM_TESTS = 100000
 
 
 if __name__ == "__main__":
     print('--- Program Running ---')
-    dist = multithreading.distribution_for_n_dice(10, NUM_TESTS)
+    dist = distributions.distribution_for_n_dice(10, NUM_TESTS)
     print("Roll Distribution")
     distributions.print_distribution(dist)
     print("\nCumulative Distribution")
