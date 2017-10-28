@@ -19,18 +19,18 @@ DEFAULT_SUCCESS_THRESHOLD = 4
 def roll_exploding_die(num_sides=DEFAULT_DIE_SIZE, success_threshold=DEFAULT_SUCCESS_THRESHOLD):
     assert num_sides > 0
 
-    successes = 0;
+    successes = 0
 
     # First roll.
     roll = randint(1, num_sides)
     if roll >= success_threshold:
-        successes += 1;
+        successes += 1
 
     # Exploding rerolls.
     while roll == num_sides:
         roll = randint(1, num_sides)
         if roll >= success_threshold:
-            successes += 1;
+            successes += 1
 
     return successes
 
@@ -49,7 +49,7 @@ def roll_exploding_dice(num_dice=1, num_sides=DEFAULT_DIE_SIZE, success_threshol
     total_successess = 0
 
     # Roll num_dice and count successes.
-    for i in range(1,num_dice):
+    for i in range(1, num_dice+1):
         total_successess += roll_exploding_die(num_sides, success_threshold)
 
     return total_successess

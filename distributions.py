@@ -16,8 +16,7 @@ def distribution_for_n_dice(n, num_tests):
         successes = roll_exploding_dice(n)
 
         # Expand list if necessary.
-        if len(distribution) <= successes:
-            distribution.extend([0] * (successes - len(distribution) + 1))
+        ensure_distribution_length(distribution, successes+1)
 
         distribution[successes] += 1
 
@@ -59,3 +58,14 @@ def print_distribution(distribution, form='s'):
     else:
         for i in range(0, len(distribution)):
             print('%s\t-\t%s' % (i, distribution[i]))
+
+
+# Function: ensure_distribution_length
+# Parameters:
+#   distribution - a distribution of the type returned by distribution_for_n_dice.
+#   length - a number for the minimum length distribution must be
+#   extend_val - the value to place in any new indices added when increasing array length.
+# Behavior: If "distribution" is shorter than "length" extends it to "length" with "0" elements
+def ensure_distribution_length(distribution, length, extend_val=0):
+    if len(distribution) < length:
+        distribution.extend([0] * (length - len(distribution)))
