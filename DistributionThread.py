@@ -17,3 +17,4 @@ class DistributionThread(threading.Thread):
     def run(self):
         dist = distribution_for_n_dice(self.num_dice, self.num_tests)
         self.distribution = cumulative_distribution(dist)
+        print("Finished distribution for %s dice." % self.num_dice)

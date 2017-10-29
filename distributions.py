@@ -37,7 +37,7 @@ def cumulative_distribution(distribution):
     sum_dist[0] = distribution[0]
     sum = sum_dist[0]
 
-    for i in range(0, len(distribution)-1):
+    for i in range(0, len(distribution)):
         sum_dist[i] = sum + distribution[i]
         sum += distribution[i]
 

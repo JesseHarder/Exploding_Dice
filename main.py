@@ -7,12 +7,12 @@ This program contains code for modeling success probabilities for rolling explod
 Burning Wheel test system.
 """
 
-import distributions
 from DistributionThread import *
+import export
 
 
-NUM_TESTS = 500000
-MAX_DICE = 5
+NUM_TESTS = 1000000
+MAX_DICE = 15
 
 if __name__ == "__main__":
     print('--- Program Running ---')
@@ -46,3 +46,5 @@ if __name__ == "__main__":
     for i in range(0,MAX_DICE):
         print("Printing results for %s dice:" % (i+1))
         print_distribution(results[i], 'f')
+
+    export.distribution_list_to_csv(results)
