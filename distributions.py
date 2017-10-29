@@ -26,7 +26,7 @@ def distribution_for_n_dice(n, num_tests):
 # Function: cumulative_distribution(distribution)
 # Parameters:
 #   distribution - a distribution of the type returned by distribution_for_n_dice.
-# Return Value: a list where index N contains sum of all vlaues at index i <= N divided by the sum of all values
+# Return Value: a list where index N contains sum of all values at index i <= N divided by the sum of all values
 #               in the list.
 def cumulative_distribution(distribution):
     assert len(distribution) >= 1
@@ -44,6 +44,29 @@ def cumulative_distribution(distribution):
     # Convert to cumulative.
     cum_dist = [x / sum for x in sum_dist]
     return cum_dist
+
+
+# Function: rev_cumulative_distribution(distribution)
+# Parameters:
+#   distribution - a distribution of the type returned by distribution_for_n_dice.
+# Return Value: a list where index N contains sum of all values at index i >= N divided by the sum of all values
+#               in the list.
+def cumulative_distribution(distribution):
+    assert len(distribution) >= 1
+
+    sum_dist = [0] * len(distribution)
+
+    # Generate summed distribution and count total.
+    sum_dist[len(distribution)-1] = distribution[len(distribution)-1]
+    sum = sum_dist[len(distribution)-1]
+
+    for i in range(len(distribution)-1, -1, -1):
+        sum_dist[i] = sum + distribution[i]
+        sum += distribution[i]
+
+    # Convert to cumulative.
+    rev_cum_dist = [x / sum for x in sum_dist]
+    return rev_cum_dist
 
 
 # Function print_distribution

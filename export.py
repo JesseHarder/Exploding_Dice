@@ -19,7 +19,7 @@ dice\successes,   0,      1,      2, ... (< - numer of successes)
 
 def distribution_list_to_csv(distributions):
     print('Writing results to file')
-    csv_file = open('results.csv', 'w')
+    csv_file = open('results2.csv', 'w')
     num_entries = len(distributions)
     entry_length = len(distributions[0])
     print('Entry length - %s' % entry_length)
